@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Title</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Bootstrap CSS v5.2.1 -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous"
+		/>
+	</head>
+
+	<body>
+		<div>
+			<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+				<a class="navbar-brand" href="#">Cyber phone</a>
+				<button
+					class="navbar-toggler d-lg-none"
+					type="button"
+					data-toggle="collapse"
+					data-target="#collapsibleNavId"
+					aria-controls="collapsibleNavId"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				></button>
+				<div class="collapse navbar-collapse" id="collapsibleNavId">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" href="../index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../admin/admin.html"
+								>Admin</a
+							>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="#!">Store</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" onclick="toggleCart()">
+								<i
+									class="fas fa-shopping-cart"
+									style="font-size: 24px; color: black"
+								></i>
+								<span id="cartCount" class="badge bg-danger"
+									>0</span
+								>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<header class="display-4 text-center bg-warning">
+				Danh sách sản phẩm
+			</header>
+			<div
+				id="listItem"
+				class="p-5 d-flex gap-4 flex-row justify-content-center"
+			></div>
+			<div
+				id="overlay"
+				style="
+					position: fixed; /* Đặt ở vị trí cố định */
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background-color: rgba(
+						0,
+						0,
+						0,
+						0.7
+					); /* Màu đen với độ mờ 70% */
+					z-index: 999; /* Đảm bảo lớp phủ ở trên cùng */
+					display: none; /* Ban đầu ẩn */
+				"
+			></div>
+			<div
+				id="cartSection"
+				style="
+					display: none;
+					position: fixed;
+					right: 0;
+					top: 0;
+					width: 800px;
+					height: 100%;
+					background-color: #fff;
+					box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+					transition: transform 0.3s;
+					z-index: 1000;
+				"
+			>
+				<header
+					class="display-4 bg-warning d-flex justify-content-between"
+				>
+					Giỏ hàng
+					<button onclick="toggleCart()">
+						<i class="fas fa-times"></i>
+					</button>
+				</header>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Tên sản phẩm</th>
+							<th>Số lượng</th>
+							<th>Giá</th>
+							<th>Tổng tiền</th>
+							<th>Hành động</th>
+						</tr>
+					</thead>
+					<tbody id="cartItems"></tbody>
+				</table>
+
+				<div class="text-center">
+					<h4>Tổng thanh toán: <span id="totalAmount">0</span></h4>
+					<button
+						id="checkoutBtn"
+						class="btn btn-danger"
+						style="font-size: 20px"
+						onclick="clearCart()"
+					>
+						Thanh toán
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.4/axios.min.js"
+			integrity="sha512-6VJrgykcg/InSIutW2biLwA1Wyq+7bZmMivHw19fI+ycW0jIjsadm8wKQQLlfv3YUS4owfMDlZU38NtaAK6fSg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"
+		></script>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+			integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+			crossorigin="anonymous"
+		></script>
+		<script src="./controller/controller.js"></script>
+		<script src="./controller/index.js"></script>
+	</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Quản lý sản phẩm</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+	</head>
+
+	<body>
+		<div>
+			<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+				<a class="navbar-brand" href="#">Cyber phone</a>
+				<button
+					class="navbar-toggler d-lg-none"
+					type="button"
+					data-toggle="collapse"
+					data-target="#collapsibleNavId"
+					aria-controls="collapsibleNavId"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				></button>
+				<div class="collapse navbar-collapse" id="collapsibleNavId">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" href="../index.html">Home </a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="../admin/admin.html"
+								>Admin</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../customer/customer.html"
+								>Store</a
+							>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<header class="display-4 text-center bg-warning">
+				Phone Management
+			</header>
+
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						href="#DanhSachSP"
+						role="tab"
+						data-toggle="tab"
+						>Danh sách sản phẩm</a
+					>
+				</li>
+			</ul>
+			<br />
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane in active" id="DanhSachSP">
+					<div class="row">
+						<div class="col-md-8">
+							<button
+								id="btnThemSP"
+								class="btn btn-success"
+								data-toggle="modal"
+								data-target="#myModal"
+							>
+								<i class="fa fa-plus mr-1"></i>
+								Thêm Mới
+							</button>
+							<!-- END BUTTON THÊM MỚI -->
+						</div>
+						<div class="col-md-4">
+							<!-- BEGIN TÌM KIẾM -->
+							<div class="input-group mb-3">
+								<input
+									type="text"
+									class="form-control"
+									placeholder="Nhập từ khóa"
+									aria-label="Recipient's username"
+									aria-describedby="basic-addon2"
+								/>
+								<div class="input-group-append">
+									<span
+										class="input-group-text"
+										id="basic-addon2"
+										><i class="fa fa-search"></i
+									></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clear-fix"></div>
+					<div class="tblSanPham" id="tblSanPham">
+						<table class="table table-bordered">
+							<thead>
+								<th>STT</th>
+								<th>Tên Sản Phẩm</th>
+								<th>Giá</th>
+								<th>Màn</th>
+								<th>Camera trước</th>
+								<th>Camera sau</th>
+								<th>Hình Ảnh</th>
+								<th>Mô Tả</th>
+								<th>type</th>
+								<th>Action</th>
+							</thead>
+							<tbody id="tblDanhSachSP"></tbody>
+						</table>
+					</div>
+					<br />
+				</div>
+			</div>
+
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Modal Heading</h4>
+							<button
+								type="button"
+								class="close"
+								data-dismiss="modal"
+							>
+								&times;
+							</button>
+						</div>
+
+						<div class="modal-body">
+							<div class="form-group">
+								<label>Tên Sản Phẩm</label>
+								<input
+									id="TenSP"
+									class="form-control"
+									placeholder="Nhập vào tên sản phẩm"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Giá</label>
+								<input
+									id="GiaSP"
+									class="form-control"
+									placeholder="Nhập vào giá"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Màn</label>
+								<input
+									id="ManSP"
+									class="form-control"
+									placeholder="Nhập vào thông số màn"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Camera trước</label>
+								<input
+									id="CameraTSP"
+									class="form-control"
+									placeholder="Nhập vào thông số camera trước"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Camera sau</label>
+								<input
+									id="CameraSSP"
+									class="form-control"
+									placeholder="Nhập vào thông số camera sau"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Hình Ảnh</label>
+								<input
+									id="HinhSP"
+									class="form-control"
+									placeholder="Nhập vào hình sản phẩm"
+								/>
+							</div>
+							<div class="form-group">
+								<label>Mô tả</label>
+								<input
+									id="MotaSP"
+									class="form-control"
+									placeholder="Nhập vào mô tả sản phẩm"
+								/>
+							</div>
+
+							<div class="form-group">
+								<label for="">Loại sản phẩm: </label>
+								<select class="form-control" id="loaiSP">
+									<option value="phone">Iphone</option>
+									<option value="laptop">SamSung</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-danger"
+								data-dismiss="modal"
+							>
+								Close
+							</button>
+							<button
+								onclick="createProduct()"
+								type="button"
+								class="btn btn-danger"
+								data-dismiss="modal"
+							>
+								Add
+							</button>
+							<button
+								onclick="updateProduct()"
+								class="btn btn-warning"
+							>
+								Update
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/series-label.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<!-- link AXIOS cdn -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.4/axios.min.js"
+			integrity="sha512-6VJrgykcg/InSIutW2biLwA1Wyq+7bZmMivHw19fI+ycW0jIjsadm8wKQQLlfv3YUS4owfMDlZU38NtaAK6fSg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<!-- controller -->
+		<script src="./controller/controller.js"></script>
+		<!-- main js(trong file controller) -->
+		<script src="./controller/index.js"></script>
+	</body>
+</html>
